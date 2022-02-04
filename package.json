@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "shadow-cljs": "^2.16.5"
+  },
+  "dependencies": {
+    "create-react-class": "^15.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "name": "course-registration",
+  "description": "This is my project work for the course title: Tools and Methods of Software Engineering on Master studies \r @ the Department of Software Engineering and Computer Science,\r Faculty of Organisational Sciences, UNIVERSITY OF BELGRADE, SERBIA. \r It also represents my first project experience fully implemented using Clojure Programming Language.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
