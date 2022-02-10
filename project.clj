@@ -1,6 +1,6 @@
 (defproject course-registration "0.1.0-SNAPSHOT"
 
-  :description "The project title 'course registration' is a student registration and result checking system,
+  :description "The project title 'course registration' is a student course registration and result checking system,
                  For further details find out @README page"
   :url "http://localhost:3000"
 

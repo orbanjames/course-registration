@@ -20,7 +20,7 @@
     :class (when (= page @(rf/subscribe [:common/page-id])) :is-active)}
    title])
 
-(defn navbar [] 
+(defn navbar []
   (r/with-let [expanded? (r/atom false)]
               [:nav.navbar.is-info>div.container
                [:div.navbar-brand
@@ -33,17 +33,65 @@
                [:div#nav-menu.navbar-menu
                 {:class (when @expanded? :is-active)}
                 [:div.navbar-start
-                 [nav-link "#/" "Home" :home]
-                 [nav-link "#/about" "About" :about]]]]))
+                 [nav-link "#/" "Home" :Home]
+                 [nav-link "#/about" "About" :about]
+                 [nav-link "#/registration" "course-registration"]
+                 [nav-link "#/check" "check-result" :check]
+                 [nav-link "#/users" "users" :users]]]]))
 
 (defn about-page []
   [:section.section>div.container>div.content
-   [:img {:src "/img/warning_clojure.png"}]])
+   [:h1 "First Hands on Clojure Project!"]
+   ;[:img {:src "/img/warning_clojure.png"}]
+   ])
+
+(defn course-registration []
+  [:section.section>div.container>div.content
+   [:div.container
+    [:p "Please login here to register your courses."]
+    [:hr]
+    [:label {:for "matric.no"} [:b "matric.no"]]
+    [:input#email {:type "text" :placeholder "Enter matric.no" :name "var" :required "true"}]
+    [:br] [:br]
+    [:label {:for "psw"} [:b "Password"]]
+    [:input#psw {:type "password" :placeholder "Enter Password" :name "psw" :required "true"}]
+    [:br] [:br]
+    [:button.registration {:type "submit"} "login"]]
+   [:div.container.sign-in
+    ]])
+
+(defn check-result []
+  [:section.section>div.container>div.content
+   [:div.container
+    [:p "Please login here."]
+    [:hr]
+    [:label {:for "matric.no"} [:b "matric.no"]]
+    [:input#email {:type "text" :placeholder "Enter matric.no" :name "var" :required "true"}]
+    [:br] [:br]
+    [:label {:for "psw"} [:b "Password"]]
+    [:input#psw {:type "password" :placeholder "Enter Password" :name "psw" :required "true"}]
+    [:br] [:br]
+    [:button.check {:type "submit"} "login"]]
+   [:div.container.sign-in
+    ]])
+
+(defn users []
+  [:section.section>div.container>div.content
+   [:div.container
+    [:p "Please login here."]
+    [:hr]
+    [:label {:for "user-name"} [:b "user-name"]]
+    [:input#email {:type "text" :placeholder "Enter user-name" :name "name" :required "true"}]
+    [:br] [:br]
+    [:label {:for "psw"} [:b "Password"]]
+    [:input#psw {:type "password" :placeholder "Enter Password" :name "psw" :required "true"}]
+    [:br] [:br]
+    [:button.check {:type "submit"} "sign-in"]]
+   [:div.container.signin
+    ]])
 
 (defn home-page []
-  [:section.section>div.container>div.content
-   (when-let [docs @(rf/subscribe [:docs])]
-     [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
+  )
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
@@ -60,13 +108,22 @@
            :view        #'home-page
            :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
      ["/about" {:name :about
-                :view #'about-page}]]))
+                :view #'about-page}]
+
+     ["/registration" {:name :registration
+                       :view #'course-registration}]
+     ["/check" {:name :check
+                :view #'check-result}]
+     ["/users" {:name :users
+                :view #'users}]]))
 
 (defn start-router! []
   (rfe/start!
     router
     navigate!
     {}))
+
+
 
 ;; -------------------------
 ;; Initialize app
